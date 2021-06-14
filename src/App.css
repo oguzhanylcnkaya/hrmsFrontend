@@ -1,38 +1,66 @@
+
+
+:root{
+  --main-color : #8316b5;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bg-main-color{
+  background-color: var(--main-color) !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bg-transperent{
+  background-color: transparent !important;}
+
+/* FOOTER */
+
+.footer{
+  padding: 20px 0;
+  border: none !important;
+  background-color: var(--main-color) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ui.grid{
+  display: contents !important;
 }
 
-.App-link {
-  color: #61dafb;
+.footer .list .item{
+  padding: 10px 0 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* DASHBOARD */
+
+
+/* */
+.job-advertisement{
+
+  width: 100%;
+  box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%) !important;
+  border-radius: 5px !important; 
+}
+
+.job-advertisement-table{
+  border: none !important;
+  margin-top: 5rem !important;
+}
+
+.carousel-home-img{
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.carousel-home-parallax{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.carousel-control-next, .carousel-control-prev{
+  z-index: 5 !important;
 }
