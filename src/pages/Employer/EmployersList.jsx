@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from 'react-bootstrap'
-import EmployerService from '../services/employerService'
+import EmployerService from '../../services/employerService'
 
 export default function EmployersList() {
 

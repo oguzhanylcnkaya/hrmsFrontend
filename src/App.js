@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Dashboard from './layouts/Dashboard';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';

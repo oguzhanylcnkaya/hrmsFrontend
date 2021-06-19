@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Menu, Icon } from 'semantic-ui-react';
-import JobSeekerService from '../services/jobSeekerService'
+import JobSeekerService from '../../services/jobSeekerService'
 
 export default function JobSeekerList() {
 
