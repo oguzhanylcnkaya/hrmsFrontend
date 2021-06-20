@@ -64,5 +64,14 @@ export default class JobAdvertisementService {
 
         return axios.post(`${apiUrl}/add`, postJobAdvertisement);
     }
+
+    getNotApproveByHrmsPersonnel(){
+        return axios.get(`${apiUrl}/getNotApproveByHrmsPersonnel`);
+    }
+
+    doApproveByHrmsPersonnel(id){
+        return axios.post(`${apiUrl}/doApproveByHrmsPersonnel?id=${id}`);
+    }
+
 }
 

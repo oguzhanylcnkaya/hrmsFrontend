@@ -34,6 +34,12 @@ export default function Header() {
                         name='Firmalar'
                     />
 
+                    <Menu.Item
+                        as={NavLink}
+                        to="/notApprovedAdvertisement"
+                        name='Onaylanmamış İş İlanları'
+                    />
+
                     <Menu.Menu position='right'>
 
                         <Menu.Item>

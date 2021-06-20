@@ -16,11 +16,18 @@ export default function AddJobAdvertisement() {
 
     const addJobAdvertisementValidationSchema = Yup.object({
 
-        jobDescription: Yup.string().required("Bu alan boş bırakılamaz."),
-
+        jobDescription: Yup.string().required("Bu alan boş bırakılamaz.").max(500, "En fazla 500 karakter girebilirsiniz."),
+        cityId: Yup.string().required("Bu alan boş bırakılamaz."),
+        jobPositionId: Yup.string().required("Bu alan boş bırakılamaz."),
+        workTypeId: Yup.string().required("Bu alan boş bırakılamaz."),
+        workHourId: Yup.string().required("Bu alan boş bırakılamaz."),
+        minSalaryScale: Yup.number().required("Bu alan boş bırakılamaz.").min(0, "Lütfen 0'dan büyük bir değer giriniz."),
+        maxSalaryScale: Yup.number().required("Bu alan boş bırakılamaz.").min(0, "Lütfen 0'dan büyük bir değer giriniz."),
+        openPositionQuantity: Yup.number().required("Bu alan boş bırakılamaz.").min(0, "Lütfen 0'dan büyük bir değer giriniz."),
+        applicationDeadline: Yup.date().required("Bu alan boş bırakılamaz."),
     });
 
-    const { values, handleSubmit, handleChange, setFieldValue, resetForm, errors, touched } = useFormik({
+    const { values, handleSubmit, handleChange, handleBlur, setFieldValue, resetForm, errors, touched } = useFormik({
 
         initialValues: {
             cityId: "",
@@ -38,11 +45,12 @@ export default function AddJobAdvertisement() {
         validationSchema: addJobAdvertisementValidationSchema,
         onSubmit: (values) => {
             values.employerId = Number(35);
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
             jobAdvertisementService.add(values)
                 .then((response) => {
                     toast.success("İlanınız Başarıyla Eklendi.");
                     toast.info("İlanınız bizim onayımızdan sonra yayınlanacaktır!");
+                    resetForm();
                 }).catch((respError) => {
                     toast.error("İlan eklerken bir problem oluştu.")
                 });
@@ -129,6 +137,13 @@ export default function AddJobAdvertisement() {
                                             value={values.cityId}
                                             onChange={(event, data) => handleChangeSemantic(data.value, 'cityId')}
                                         />
+                                        {
+                                            errors.cityId && touched.cityId && (
+                                                <div className={"ui pointing red basic label"}>
+                                                    {errors.cityId}
+                                                </div>
+                                            )
+                                        }
                                     </Form.Field>
 
                                     <Form.Field>
@@ -141,6 +156,13 @@ export default function AddJobAdvertisement() {
                                             value={values.jobPositionId}
                                             onChange={(event, data) => handleChangeSemantic(data.value, 'jobPositionId')}
                                         />
+                                        {
+                                            errors.jobPositionId && touched.jobPositionId && (
+                                                <div className={"ui pointing red basic label"}>
+                                                    {errors.jobPositionId}
+                                                </div>
+                                            )
+                                        }
                                     </Form.Field>
 
                                     <Form.Group widths='equal'>
@@ -156,7 +178,15 @@ export default function AddJobAdvertisement() {
                                                     placeholder="Min Maaş"
                                                     type='number' />
 
+
                                             </div>
+                                            {
+                                                errors.minSalaryScale && touched.minSalaryScale && (
+                                                    <div className={"ui pointing red basic label"}>
+                                                        {errors.minSalaryScale}
+                                                    </div>
+                                                )
+                                            }
 
                                         </Form.Field>
                                         <Form.Field>
@@ -171,6 +201,13 @@ export default function AddJobAdvertisement() {
                                                     onChange={handleChange}
                                                     type='number' />
                                             </div>
+                                            {
+                                                errors.maxSalaryScale && touched.maxSalaryScale && (
+                                                    <div className={"ui pointing red basic label"}>
+                                                        {errors.maxSalaryScale}
+                                                    </div>
+                                                )
+                                            }
                                         </Form.Field>
                                     </Form.Group>
 
@@ -184,6 +221,13 @@ export default function AddJobAdvertisement() {
                                             value={values.workTypeId}
                                             onChange={(event, data) => handleChangeSemantic(data.value, 'workTypeId')}
                                         />
+                                        {
+                                            errors.workTypeId && touched.workTypeId && (
+                                                <div className={"ui pointing red basic label"}>
+                                                    {errors.workTypeId}
+                                                </div>
+                                            )
+                                        }
                                     </Form.Field>
 
                                     <Form.Field>
@@ -196,6 +240,13 @@ export default function AddJobAdvertisement() {
                                             value={values.workHourId}
                                             onChange={(event, data) => handleChangeSemantic(data.value, 'workHourId')}
                                         />
+                                        {
+                                            errors.workHourId && touched.workHourId && (
+                                                <div className={"ui pointing red basic label"}>
+                                                    {errors.workHourId}
+                                                </div>
+                                            )
+                                        }
                                     </Form.Field>
 
                                     <Form.Group widths='equal'>
@@ -207,6 +258,13 @@ export default function AddJobAdvertisement() {
                                                 onChange={handleChange}
                                                 placeholder="Açık Pozisyon Sayısı"
                                             />
+                                            {
+                                                errors.openPositionQuantity && touched.openPositionQuantity && (
+                                                    <div className={"ui pointing red basic label"}>
+                                                        {errors.openPositionQuantity}
+                                                    </div>
+                                                )
+                                            }
                                         </Form.Field>
                                         <Form.Field>
                                             <label>Son Başvuru Tarihi</label>
@@ -214,6 +272,13 @@ export default function AddJobAdvertisement() {
                                                 value={values.applicationDeadline}
                                                 onChange={handleChange}
                                             />
+                                            {
+                                                errors.applicationDeadline && touched.applicationDeadline && (
+                                                    <div className={"ui pointing red basic label"}>
+                                                        {errors.applicationDeadline}
+                                                    </div>
+                                                )
+                                            }
                                         </Form.Field>
                                     </Form.Group>
 
@@ -224,6 +289,7 @@ export default function AddJobAdvertisement() {
                                             name="jobDescription"
                                             onChange={handleChange}
                                             value={values.jobDescription}
+                                            onBlur={handleBlur}
                                             placeholder="Açıklama"
                                         ></TextArea>
                                         {
